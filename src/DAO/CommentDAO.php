@@ -18,20 +18,6 @@ class CommentDAO extends DAO
         return $comment;
     }
 
-    public function getComments()
-    {
-        $sql = 'SELECT id, pseudo, content, createdAt, article_id FROM comment
-ORDER BY id DESC';
-        $result = $this->createQuery($sql);
-        $comments = [];
-        foreach ($result as $row) {
-            $commentId = $row['id'];
-            $comments[$commentId] = $this->buildObject($row);
-        }
-        $result->closeCursor();
-        return $comments;
-    }
-
     public function getComment($commentId)
     {
         $sql = 'SELECT id, pseudo, content, createdAt, article_id FROM comment
